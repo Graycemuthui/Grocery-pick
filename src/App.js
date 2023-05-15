@@ -1,11 +1,38 @@
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Signup from "./authentication/Signup";
 import "./App.css";
 
-function App() {
+const App = () => {
+  const [storedToken, setStoredToken] = useState(localStorage.getItem("token"));
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:4000/api/v1/profile ", {
+      method: "GET",
+      headers: {
+        Accepts: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, [storedToken]);
+
   return (
     <div className="App">
-      <h1>Helllo</h1>
+      <Router>
+        <Routes>
+          <Route
+            path="/signup"
+            element={<Signup setStoredToken={setStoredToken} />}
+          />
+        </Routes>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
