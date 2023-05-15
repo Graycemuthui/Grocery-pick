@@ -1,11 +1,15 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = ({ setStoredToken }) => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -23,11 +27,25 @@ const Signup = ({ setStoredToken }) => {
         },
       }),
     })
-      .then((res) => res.json())
+      .then((response) => response.json())
       .then((data) => {
-        localStorage.setItem("token", data.token);
-        console.log(data);
-        setStoredToken(data.token);
+        if (data.jwt) {
+          localStorage.setItem("token", data.jwt);
+          console.log(data);
+          setStoredToken(data.jwt);
+          navigate("/");
+        } else {
+          toast.error("Invalid username or password", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
       });
 
     setUsername("");
@@ -62,7 +80,7 @@ const Signup = ({ setStoredToken }) => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 p-7 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -79,7 +97,7 @@ const Signup = ({ setStoredToken }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 p-7 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -96,7 +114,7 @@ const Signup = ({ setStoredToken }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 p-7 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -109,6 +127,7 @@ const Signup = ({ setStoredToken }) => {
             </button>
           </div>
         </form>
+        <ToastContainer />
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?{" "}
           <Link

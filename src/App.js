@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Signup from "./authentication/Signup";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 import "./App.css";
 
 const App = () => {
@@ -28,6 +29,10 @@ const App = () => {
           <Route
             path="/signup"
             element={<Signup setStoredToken={setStoredToken} />}
+          />
+          <Route
+            path="/login"
+            element={<Login setStoredToken={setStoredToken} />}
           />
         </Routes>
       </Router>
