@@ -23,26 +23,30 @@ const Login = ({ setStoredToken }) => {
         },
       }),
     })
-      .then((res) => res.json())
+      .then((response) => response.json())
       .then((data) => {
-        if (data.token) {
-          localStorage.setItem("token", data.token);
-          setStoredToken(data.token);
-          navigate("/");
+        if (data.jwt) {
+          localStorage.setItem("token", data.jwt);
+          console.log(data);
+          setStoredToken(data.jwt);
+          navigate("/products");
         } else {
-          toast.error("Invalid username or password", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
+          data.errors.forEach((error) => {
+            toast.error(error, {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           });
         }
       });
 
+    setEmail("");
     setPassword("");
   };
 
