@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Navbar from "./pages/Navbar";
+import Product from "./components/Products";
 import "./App.css";
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
             path="/login"
             element={<Login setStoredToken={setStoredToken} />}
           />
+          <Route path="/products" element={<Product />} />
         </Routes>
       </Router>
     </div>
