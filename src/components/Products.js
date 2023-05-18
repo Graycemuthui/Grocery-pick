@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import cover from "../images/cover.jpg";
 
 const Product = () => {
   const [product, setProducts] = useState([]);
@@ -12,10 +13,16 @@ const Product = () => {
 
   return (
     <div className="bg-white">
-      <h2 className="text-2xl font-bold tracking-tight text-gray-900  text-center">
-        OUR COLLECTION
-      </h2>
-      <div className=" px-4 pt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-3 lg:grid-cols-3 xl:gap-x-10 cursor-pointer ">
+      <div className="relative">
+        <img src={cover} alt="cover" className="w-full h-64 object-cover" />
+        <div className="absolute w-1/2 h-3/4 top-0 left-80 bottom-50  bg-gray-800 opacity-70 invisible lg:visible">
+          <h3 className=" text-4xl font-bold text-white">Grocerypick</h3>
+          <p className=" text-2xl text-white">
+            Fresh produce delivered to your doorstep
+          </p>
+        </div>
+      </div>
+      <div className=" px-4 pt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-3 lg:grid-cols-5 xl:gap-x-10 cursor-pointer ">
         {product.map((product) => (
           <div
             key={product.id}
@@ -32,20 +39,14 @@ const Product = () => {
                     />
                   </div>
                 </Link>
-                <div className="mt-4 flex justify-between">
+                <div className="mt-10 ">
                   <div>
-                    <h3 className="text-lg text-red-700">
+                    <h3 className="text-lg text-black">
                       {product.product_name}
                     </h3>
-                    <p className="mt-1 text-sm text-gray-500">
-                      {product.product_description}
-                    </p>
                   </div>
                   <p className="text-sm font-medium text-gray-900">
                     Ksh{product.product_price}
-                  </p>
-                  <p className="text-sm font-medium text-gray-900">
-                    {product.product_quantity}
                   </p>
                 </div>
               </div>
