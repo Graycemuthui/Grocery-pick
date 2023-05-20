@@ -15,7 +15,7 @@ const Product = () => {
     <div className="bg-white">
       <div className="relative">
         <img src={cover} alt="cover" className="w-full h-64 object-cover" />
-        <div className="absolute w-1/2 h-3/4 top-0 left-80 bottom-50  bg-gray-800 opacity-70 invisible lg:visible">
+        <div className="absolute w-1/8 h-3/4 top-0 lg:left-70 sm:left-0 bg-gray-800 opacity-70">
           <h3 className=" text-4xl font-bold text-white">Grocerypick</h3>
           <p className=" text-2xl text-white">
             Fresh produce delivered to your doorstep
