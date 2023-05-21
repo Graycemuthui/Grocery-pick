@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Navbar from "./pages/Navbar";
 import Product from "./components/Products";
 import ProductDetail from "./pages/ProductDetail";
+import Categories from "./components/Categories";
 import "./App.css";
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
             element={<Login setStoredToken={setStoredToken} />}
           />
           <Route path="/products" element={<Product />} />
+          <Route path="/products/:category" element={<Product />} />
           <Route path="/product/:id" element={<ProductDetail />} />
         </Routes>
       </Router>

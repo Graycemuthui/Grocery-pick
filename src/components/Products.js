@@ -15,7 +15,7 @@ const Product = () => {
     <div className="bg-white">
       <div className="relative">
         <img src={cover} alt="cover" className="w-full h-64 object-cover" />
-        <div className="absolute w-1/8 h-3/4 top-0 lg:left-70 sm:left-0 bg-gray-800 opacity-70">
+        <div className="absolute w-1/8 h-3/4 top-0 left-70 sm:left-0 bg-gray-800 opacity-70 lg:left-70">
           <h3 className=" text-4xl font-bold text-white">Grocerypick</h3>
           <p className=" text-2xl text-white">
             Fresh produce delivered to your doorstep
@@ -26,7 +26,7 @@ const Product = () => {
         {product.map((product) => (
           <div
             key={product.id}
-            className="product-description col-span-1 flex flex-col bg-white border-2 p-2 h-full"
+            className="product-description col-span-1 flex flex-col bg-white border-2 p-2 h-full border-radius: 1rem; hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-1 hover:shadow-2xl hover:border-transparent hover:rounded-3xl hover:border-"
           >
             <div className="mt-6">
               <div className="group relative">
