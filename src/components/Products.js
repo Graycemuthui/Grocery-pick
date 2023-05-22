@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import cover from "../images/cover.jpg";
+import Categories from "./Categories";
 
 const Product = () => {
   const [product, setProducts] = useState([]);
@@ -14,19 +15,20 @@ const Product = () => {
   return (
     <div className="bg-white">
       <div className="relative">
-        <img src={cover} alt="cover" className="w-full h-64 object-cover" />
-        <div className="absolute w-1/8 h-3/4 top-0 left-70 sm:left-0 bg-gray-800 opacity-70 lg:left-70">
+        <img src={cover} alt="cover" className="w-full h-64 object-cover " />
+        <div className="absolute w-1/8 h-3/4 top-0 bg-gray-800 opacity-70">
           <h3 className=" text-4xl font-bold text-white">Grocerypick</h3>
           <p className=" text-2xl text-white">
             Fresh produce delivered to your doorstep
           </p>
         </div>
+        <Categories />
       </div>
       <div className=" px-4 pt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-3 lg:grid-cols-5 xl:gap-x-10 cursor-pointer ">
         {product.map((product) => (
           <div
             key={product.id}
-            className="product-description col-span-1 flex flex-col bg-white border-2 p-2 h-full border-radius: 1rem; hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-1 hover:shadow-2xl hover:border-transparent hover:rounded-3xl hover:border-"
+            className="product-description col-span-1 flex flex-col border-2 h-full border-radius-2xl"
           >
             <div className="mt-6">
               <div className="group relative">
