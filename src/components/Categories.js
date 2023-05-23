@@ -1,29 +1,60 @@
-import React from "react";
-import HorizontalScroll from "react-scroll-horizontal";
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper";
 
 const Categories = () => {
-  const categories = [
-    { id: 1, name: "Fruits" },
-    { id: 2, name: "Vegetables" },
-    { id: 3, name: "Meat" },
-    { id: 4, name: "Juice" },
-    { id: 5, name: "Dairy" },
-    { id: 6, name: "Fish" },
-  ];
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:4000/api/v1/categories")
+      .then((res) => res.json())
+      .then((data) => setCategory(data));
+  }, [category]);
+
   return (
-    <div className="absolute top-0 w-full">
-      <div className="flex justify-center">
-        <HorizontalScroll className="overflow-scroll absolute">
-          {categories.map((category) => (
-            <div
-              key={category.id}
-              className="flex items-center justify-center w-32 h-16 bg-gray-800 text-white text-lg font-bold"
-            >
-              {category.name}
+    <div className="relative p-2 top-0 left-0 w-full h-full cursor-pointer">
+      <Swiper
+        modules={[Pagination]}
+        spaceBetween={30}
+        slidesPerView={6}
+        pagination={{ clickable: true }}
+        breakpoints={{
+          320: {
+            width: 374,
+            slidesPerView: 3,
+            spaceBetween: 20,
+            centeredSlides: true,
+          },
+          640: {
+            width: 640,
+            slidesPerView: 3,
+            spaceBetween: 50,
+          },
+          768: {
+            width: 768,
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+        }}
+      >
+        {category.map((category) => (
+          <SwiperSlide
+            key={category.id}
+            className="flex justify-center items-center text-center h-full w-full gap-2 bg-white rounded-full lg:left-32"
+          >
+            <div className="flex justify-center items-center gap-1 h-10 w-20 rounded-full ">
+              <img
+                className=" w-full object-cover "
+                src={category.category_image}
+                alt={category.category_name}
+              />
+              <p className="text-2xl font-bold">{category.category_name}</p>
             </div>
-          ))}
-        </HorizontalScroll>
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };
