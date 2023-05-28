@@ -1,21 +1,5 @@
 .star-rating {
-  display: inline-block;
-}
-
-.star-rating button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.star-rating .star {
-  font-size: 1rem;
-}
-
-.star-rating .star-filled {
-  color: gold;
-}
-
-.star-rating .star-empty {
-  color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

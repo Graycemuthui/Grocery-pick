@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import cover from "../images/cover.jpg";
 import Categories from "./Categories";
+import Rating from "../pages/Rating";
 
 const Product = () => {
   const [product, setProducts] = useState([]);
@@ -28,7 +29,7 @@ const Product = () => {
         {product.map((product) => (
           <div
             key={product.id}
-            className="product-description col-span-1 flex flex-col border-2 h-full border-radius-2xl"
+            className="product-description col-span-1 flex flex-col border-2 h-full border-radius: 25px"
           >
             <div className="mt-6">
               <div className="group relative">
@@ -41,13 +42,14 @@ const Product = () => {
                     />
                   </div>
                 </Link>
-                <div className="mt-10 ">
+                <div className="mt-10 flex flex-col justify-center items-center ">
+                  <Rating />
                   <div>
                     <h3 className="text-lg text-black">
                       {product.product_name}
                     </h3>
                   </div>
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-md font-medium  text-gray-900">
                     Ksh{product.product_price}
                   </p>
                 </div>
