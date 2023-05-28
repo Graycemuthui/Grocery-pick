@@ -20,21 +20,21 @@ const Categories = () => {
         spaceBetween={30}
         slidesPerView={6}
         pagination={{ clickable: true }}
+        loop={true}
         breakpoints={{
           320: {
-            width: 374,
-            slidesPerView: 3,
+            width: 320,
+            slidesPerView: 1,
             spaceBetween: 20,
-            centeredSlides: true,
           },
           640: {
             width: 640,
-            slidesPerView: 3,
+            slidesPerView: 2,
             spaceBetween: 50,
           },
           768: {
             width: 768,
-            slidesPerView: 4,
+            slidesPerView: 2,
             spaceBetween: 30,
           },
         }}
@@ -42,9 +42,9 @@ const Categories = () => {
         {category.map((category) => (
           <SwiperSlide
             key={category.id}
-            className="flex justify-center items-center text-center h-full w-full gap-2 bg-white rounded-full lg:left-32"
+            className="flex justify-center items-center text-center gap-2 bg-white lg:left-32"
           >
-            <div className="flex justify-center items-center gap-1 h-10 w-20 rounded-full ">
+            <div className="flex justify-evenly items-center text-center gap-1 h-10 w-20 ">
               <img
                 className=" w-full object-cover "
                 src={category.category_image}

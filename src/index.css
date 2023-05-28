@@ -21,3 +21,8 @@ code {
   padding: 0;
   box-sizing: border-box;
 }
+
+.swiper-pagination {
+  bottom: 1.5px !important;
+  position: relative !important;
+}
