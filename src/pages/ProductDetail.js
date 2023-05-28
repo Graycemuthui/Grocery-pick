@@ -14,47 +14,48 @@ const ProductDetail = () => {
   }, [id]);
 
   return (
-    <div>
-      <div className="bg-white d-flex justify-content-center container mt-5">
-        <div className="pt-6">
-          <div className="product-description col-span-1 flex flex-col bg-white border-2 p-2 h-full">
-            <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-1 lg:gap-x-8 lg:px-8">
-              <div className="aspect-h-4 aspect-w-3 overflow-hidden rounded-lg lg:block">
-                <img
-                  src={product.product_image}
-                  alt={product.product_name}
-                  className="h-80 w-full object-cover object-center"
-                />
-              </div>
+    <div class="bg-white">
+      <div class="pt-6">
+        <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+          <div class="aspect-h-4 aspect-w-3 overflow-hidden rounded-lg lg:block">
+            <img
+              src={product.product_image}
+              alt={product.product_name}
+              class="h-full w-full object-cover object-center"
+            />
+          </div>
+        </div>
 
-              <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-                <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                  <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                    {product.product_name}
-                  </h1>
-                </div>
-                <div className="mt-4 lg:row-span-3 lg:mt-0">
-                  <h2 className="sr-only">Product information</h2>
-                  <p className="text-3xl tracking-tight text-gray-900">
-                    ${product.product_price}
-                  </p>
-                </div>
-                <div className="d-flex justify-content-center mt-3">
-                  <button
-                    style={{
-                      backgroundColor: "#f55a98",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "30px",
-                      padding: "10px 20px",
-                      marginTop: "20px",
-                    }}
-                  >
-                    Add to Cart
-                  </button>
-                </div>
+        <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+          <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+            <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+              {product.product_name}
+            </h1>
+          </div>
+
+          <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+            <div>
+              <h3 class="sr-only">Description</h3>
+
+              <div class="space-y-6">
+                <p class="text-base text-gray-900">
+                  {product.product_description}
+                </p>
               </div>
             </div>
+          </div>
+
+          <div class="mt-4 lg:row-span-3 lg:mt-0">
+            <h2 class="sr-only">Product information</h2>
+            <p class="text-3xl tracking-tight text-gray-900">
+              Ksh{product.product_price}
+            </p>
+            <button
+              type="submit"
+              class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-green-800 px-8 py-3 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              Add to cart
+            </button>
           </div>
         </div>
       </div>

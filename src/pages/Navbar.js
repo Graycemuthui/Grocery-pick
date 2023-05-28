@@ -2,9 +2,11 @@ import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 const navigation = [
-  { name: "Home", href: "#", current: true },
+  // MAKE HOME NAVIGATE TO PRODUCTS
+  { name: "Home", href: "/products", current: true },
   { name: "About us", href: "#", current: false },
   { name: "Contact", href: "#", current: false },
 ];

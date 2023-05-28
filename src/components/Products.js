@@ -29,7 +29,7 @@ const Product = () => {
         {product.map((product) => (
           <div
             key={product.id}
-            className="product-description col-span-1 flex flex-col border-2 h-full border-radius: 25px"
+            className="product-description col-span-1 flex flex-col border-2 h-full border-radius-2xl border-gray-200 hover:shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
           >
             <div className="mt-6">
               <div className="group relative">
