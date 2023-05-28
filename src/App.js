@@ -5,6 +5,9 @@ import Login from "./pages/Login";
 import Navbar from "./pages/Navbar";
 import Product from "./components/Products";
 import ProductDetail from "./pages/ProductDetail";
+import Order from "./components/Order";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 import "./App.css";
 
 const App = () => {
@@ -41,6 +44,9 @@ const App = () => {
           <Route path="/products" element={<Product />} />
           <Route path="/products/:category" element={<Product />} />
           <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Router>
     </div>
