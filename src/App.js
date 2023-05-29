@@ -8,6 +8,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Order from "./components/Order";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import CategoryProduct from "./pages/CategoryProduct";
 import "./App.css";
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/order" element={<Order />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/category/:id" element={<CategoryProduct />} />
         </Routes>
       </Router>
     </div>
