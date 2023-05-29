@@ -11,7 +11,7 @@ function Checkout() {
     if (saved.length > 0) {
       let total = 0;
       saved.forEach((product) => {
-        total += Number(product.price);
+        total += Number(product.product_price);
       });
       setTotalPrice(total);
     }
@@ -58,7 +58,7 @@ function Checkout() {
                       <img
                         src={product.product_image}
                         alt={product.product_name}
-                        className="h-80 w-full object-cover object-center"
+                        className="h-60 w-80 object-cover object-center"
                       />
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
