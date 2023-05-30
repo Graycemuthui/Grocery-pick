@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import cover from "../images/cover.jpg";
 import Categories from "./Categories";
 import Rating from "../pages/Rating";
+import Footer from "./Footer";
 
 const Product = () => {
   const [product, setProducts] = useState([]);
@@ -58,6 +59,7 @@ const Product = () => {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 };
