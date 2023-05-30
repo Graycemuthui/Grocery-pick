@@ -2,11 +2,9 @@ import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import Logout from "./authentication/Logout";
 
-const navigation = [
-  { name: "Home", href: "/products", current: true },
-  { name: "Contact", href: "/contact", current: false },
-];
+const navigation = [{ name: "Home", href: "/products", current: true }];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -103,7 +101,7 @@ const Navbar = () => {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="/signout"
+                            href="/logout"
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"

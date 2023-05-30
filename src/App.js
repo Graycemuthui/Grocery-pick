@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
+import Signup from "./pages/authentication/Signup";
+import Login from "./pages/authentication/Login";
 import Navbar from "./pages/Navbar";
 import Product from "./components/Products";
 import ProductDetail from "./pages/ProductDetail";
@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import CategoryProduct from "./pages/CategoryProduct";
 import Footer from "./components/Footer";
+import Logout from "./pages/authentication/Logout";
 import "./App.css";
 
 const App = () => {
@@ -35,14 +36,26 @@ const App = () => {
       <Router>
         <Navbar />
         <Routes>
-          <Route
-            path="/signup"
-            element={<Signup setStoredToken={setStoredToken} />}
-          />
-          <Route
-            path="/login"
-            element={<Login setStoredToken={setStoredToken} />}
-          />
+          {storedToken ? (
+            <Route path="/" element={<Product />} />
+          ) : (
+            <Route
+              path="/"
+              element={<Signup setStoredToken={setStoredToken} />}
+            />
+          )}
+          {storedToken ? (
+            <Route
+              path="/login"
+              element={<Logout setStoredToken={setStoredToken} />}
+            />
+          ) : (
+            <Route
+              path="logout"
+              element={<Login setStoredToken={setStoredToken} />}
+            />
+          )}
+
           <Route path="/products" element={<Product />} />
           <Route path="/products/:category" element={<Product />} />
           <Route path="/product/:id" element={<ProductDetail />} />
@@ -52,6 +65,10 @@ const App = () => {
           <Route path="/category/:id" element={<CategoryProduct />} />
           <Route path="/" element={<Product />} />
           <Route path="/footer" element={<Footer />} />
+          <Route
+            path="/logout"
+            element={<Logout setStoredToken={setStoredToken} />}
+          />
         </Routes>
       </Router>
     </div>
