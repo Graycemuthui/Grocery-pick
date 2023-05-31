@@ -6,10 +6,14 @@ const Navshow = ({ children }) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    if (location.pathname === "/" || location.pathname === "/login") {
-      setShow(true);
-    } else {
+    if (
+      location.pathname === "/" ||
+      location.pathname === "/login" ||
+      location.pathname === "/logout"
+    ) {
       setShow(false);
+    } else {
+      setShow(true);
     }
   }, [location]);
 

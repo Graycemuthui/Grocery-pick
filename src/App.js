@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Signup from "./pages/authentication/Signup";
 import Login from "./pages/authentication/Login";
 import Navbar from "./pages/Navbar";
@@ -16,62 +21,71 @@ import "./App.css";
 
 const App = () => {
   const [storedToken, setStoredToken] = useState(localStorage.getItem("token"));
+  const [showNavbar, setShowNavbar] = useState(true);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:4000/api/v1/profile ", {
-      method: "GET",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
+    if (storedToken) {
+      localStorage.setItem("token", storedToken);
+    } else {
+      localStorage.removeItem("token");
+    }
   }, [storedToken]);
+
+  const handleSignup = () => {
+    // Handle successful signup
+    // Navigate to the login page
+    return <Navigate to="/login" />;
+  };
 
   return (
     <div className="App">
       <Router>
-        <Navshow>
-          <Navbar />
-        </Navshow>
+        <Navshow>{showNavbar && <Navbar />}</Navshow>
         <Routes>
           {storedToken ? (
-            <Route path="/" element={<Product />} />
+            <>
+              <Route
+                path="/"
+                element={
+                  <Signup
+                    setStoredToken={setStoredToken}
+                    handleSignup={handleSignup}
+                  />
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <Login
+                    setStoredToken={setStoredToken}
+                    setShowNavbar={setShowNavbar}
+                  />
+                }
+              />
+              <Route path="/*" element={<Navigate to="/" />} />
+            </>
           ) : (
-            <Route
-              path="/"
-              element={<Signup setStoredToken={setStoredToken} />}
-            />
+            <>
+              <Route path="/" element={<Product />} />
+              <Route path="/products/*" element={<Product />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/order" element={<Order />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/category/:id" element={<CategoryProduct />} />
+              <Route path="/footer" element={<Footer />} />
+              <Route
+                path="/logout"
+                element={
+                  <Logout
+                    setStoredToken={setStoredToken}
+                    setShowNavbar={setShowNavbar}
+                  />
+                }
+              />
+              <Route path="/*" element={<Navigate to="/" />} />
+            </>
           )}
-          {storedToken ? (
-            <Route
-              path="/login"
-              element={<Logout setStoredToken={setStoredToken} />}
-            />
-          ) : (
-            <Route
-              path="logout"
-              element={<Login setStoredToken={setStoredToken} />}
-            />
-          )}
-
-          <Route path="/products" element={<Product />} />
-          <Route path="/products/:category" element={<Product />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/order" element={<Order />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/category/:id" element={<CategoryProduct />} />
-          <Route path="/" element={<Product />} />
-          <Route path="/footer" element={<Footer />} />
-          <Route
-            path="/logout"
-            element={<Logout setStoredToken={setStoredToken} />}
-          />
         </Routes>
       </Router>
     </div>
