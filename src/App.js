@@ -11,6 +11,7 @@ import Checkout from "./pages/Checkout";
 import CategoryProduct from "./pages/CategoryProduct";
 import Footer from "./components/Footer";
 import Logout from "./pages/authentication/Logout";
+import Navshow from "./pages/Navshow";
 import "./App.css";
 
 const App = () => {
@@ -34,7 +35,9 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <Navbar />
+        <Navshow>
+          <Navbar />
+        </Navshow>
         <Routes>
           {storedToken ? (
             <Route path="/" element={<Product />} />
