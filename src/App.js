@@ -15,13 +15,11 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import CategoryProduct from "./pages/CategoryProduct";
 import Footer from "./components/Footer";
-import Logout from "./pages/authentication/Logout";
 import Navshow from "./pages/Navshow";
 import "./App.css";
 
 const App = () => {
   const [storedToken, setStoredToken] = useState(localStorage.getItem("token"));
-  const [showNavbar, setShowNavbar] = useState(true);
 
   useEffect(() => {
     if (storedToken) {
@@ -32,17 +30,15 @@ const App = () => {
   }, [storedToken]);
 
   const handleSignup = () => {
-    // Handle successful signup
-    // Navigate to the login page
     return <Navigate to="/login" />;
   };
 
   return (
     <div className="App">
       <Router>
-        <Navshow>{showNavbar && <Navbar />}</Navshow>
+        <Navshow>{<Navbar />}</Navshow>
         <Routes>
-          {storedToken ? (
+          {!storedToken ? (
             <>
               <Route
                 path="/"
@@ -55,18 +51,12 @@ const App = () => {
               />
               <Route
                 path="/login"
-                element={
-                  <Login
-                    setStoredToken={setStoredToken}
-                    setShowNavbar={setShowNavbar}
-                  />
-                }
+                element={<Login setStoredToken={setStoredToken} />}
               />
               <Route path="/*" element={<Navigate to="/" />} />
             </>
           ) : (
             <>
-              <Route path="/" element={<Product />} />
               <Route path="/products/*" element={<Product />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/order" element={<Order />} />
@@ -74,16 +64,7 @@ const App = () => {
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/category/:id" element={<CategoryProduct />} />
               <Route path="/footer" element={<Footer />} />
-              <Route
-                path="/logout"
-                element={
-                  <Logout
-                    setStoredToken={setStoredToken}
-                    setShowNavbar={setShowNavbar}
-                  />
-                }
-              />
-              <Route path="/*" element={<Navigate to="/" />} />
+              <Route path="/*" element={<Navigate to="/products" />} />
             </>
           )}
         </Routes>

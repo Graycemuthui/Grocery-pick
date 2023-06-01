@@ -10,6 +10,7 @@ const Login = ({ setStoredToken }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     fetch("http://127.0.0.1:4000/api/v1/login", {
       method: "POST",
       headers: {
@@ -31,7 +32,7 @@ const Login = ({ setStoredToken }) => {
           setStoredToken(data.jwt);
           navigate("/products");
         } else {
-          data.errors.forEach((error) => {
+          data?.errors?.forEach((error) => {
             toast.error(error, {
               position: "top-center",
               autoClose: 5000,
@@ -104,30 +105,7 @@ const Login = ({ setStoredToken }) => {
               />
             </div>
           </div>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember_me"
-                name="remember_me"
-                type="checkbox"
-                className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-              />
-              <label
-                htmlFor="remember_me"
-                className="block ml-2 text-sm text-gray-900"
-              >
-                Remember me
-              </label>
-            </div>
-            <div className="text-sm">
-              <a
-                href="#"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                Forgot your password?
-              </a>
-            </div>
-          </div>
+
           <div>
             <button
               type="submit"
