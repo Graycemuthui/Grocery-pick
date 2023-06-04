@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import cover from "../images/cover.jpg";
 import Categories from "./Categories";
@@ -7,6 +7,7 @@ import Footer from "./Footer";
 
 const Product = () => {
   const [product, setProducts] = useState([]);
+  const footerRef = useRef();
 
   useEffect(() => {
     fetch("http://127.0.0.1:4000/api/v1/products")
@@ -59,7 +60,7 @@ const Product = () => {
           </div>
         ))}
       </div>
-      <Footer />
+      <Footer ref={footerRef} />
     </div>
   );
 };

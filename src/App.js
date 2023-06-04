@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -20,6 +20,11 @@ import "./App.css";
 
 const App = () => {
   const [storedToken, setStoredToken] = useState(localStorage.getItem("token"));
+  const footerRef = useRef();
+
+  const handleFooterNavigation = () => {
+    footerRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     if (storedToken) {
@@ -36,7 +41,9 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <Navshow>{<Navbar />}</Navshow>
+        <Navshow>
+          {<Navbar handleFooterNavigation={handleFooterNavigation} />}
+        </Navshow>
         <Routes>
           {!storedToken ? (
             <>
@@ -63,7 +70,7 @@ const App = () => {
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/category/:id" element={<CategoryProduct />} />
-              <Route path="/footer" element={<Footer />} />
+              <Route path="/footer" element={<Footer ref={footerRef} />} />
               <Route path="/*" element={<Navigate to="/products" />} />
             </>
           )}

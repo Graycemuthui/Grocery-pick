@@ -8,7 +8,7 @@ function Navcart() {
   const { saved } = useContext(RoomContext);
 
   return (
-    <nav className="top-0 right-0 w-[30vw] pt-40 p-10 pl-20 text-black absolute h-60 ">
+    <nav className="mx-auto px-2 top-0 left-0 lg:right-0 lg:mr-10 w-[30vw] pt-150 lg:pt-40 p-10 pl-20 text-black absolute h-60">
       <Link
         to="/products"
         style={{ textDecoration: "none", color: "black" }}

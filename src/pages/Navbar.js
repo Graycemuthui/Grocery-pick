@@ -5,7 +5,10 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { CiUser } from "react-icons/ci";
 
-const navigation = [{ name: "Home", href: "/products", current: true }];
+const navigation = [
+  { name: "Home", href: "/products", current: true },
+  { name: "Contact", href: "/footer", current: false },
+];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
