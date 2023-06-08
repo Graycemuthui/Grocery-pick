@@ -30,7 +30,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Live Demo
 
-- Here is a link to the live demo [link](captain-hook-nine.vercel.app)
+- Not deployed yet.
 
 ### Install
 
